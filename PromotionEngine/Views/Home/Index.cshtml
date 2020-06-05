@@ -1,0 +1,40 @@
+﻿@model List<Item>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (Model != null && Model.Any())
+{
+    using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="row">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <div class="col-3">
+                    @Html.HiddenFor(x => Model[i].ItemId)
+                    @Html.HiddenFor(x => Model[i].SKU)
+                    @Html.HiddenFor(x => Model[i].Price)
+
+                    <h3>@Model[i].SKU</h3>
+                    <br />
+                    Price: <b>@Model[i].Price</b>
+                    <br />
+                    @Html.TextBoxFor(model => Model[i].Qty, new { @type = "number" })
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <input type="submit" name="Calculate" value="Calculate Total" />
+            </div>
+            <div class="col-9">
+                @ViewBag.Total
+            </div>
+        </div>
+    }
+}
