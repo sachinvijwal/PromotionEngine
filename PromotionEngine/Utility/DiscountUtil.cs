@@ -17,35 +17,35 @@ namespace PromotionEngine.Utility
             {
                 foreach (var promo in promos)
                 {
-                    var filterItems = items.Where(x => promo.PromoItems.Any(y => y.ItemId == x.ItemId)).ToList();
-                    if (filterItems.Count == promo.PromoItems.Count)
-                    {
-                        var promoItems = promo.PromoItems.Where(x => items.Any(y => y.ItemId == x.ItemId)).ToList();
-                    }
+                    //var filterItems = items.Where(x => promo.PromoItems.Any(y => y.ItemId == x.ItemId)).ToList();
+                    //if (filterItems.Count == promo.PromoItems.Count)
+                    //{
+                    //    var promoItems = promo.PromoItems.Where(x => items.Any(y => y.ItemId == x.ItemId)).ToList();
+                    //}
                     if (promo.PromoItems != null && promo.PromoItems.Any())
                     {
 
-                        //foreach (var promoItem in promo.PromoItems)
-                        //{
-                        //    var item = items.FirstOrDefault(x => x.ItemId == promoItem.ItemId);
-                        //    if (item != null && item.Qty > 0 && promoItem.Qty > 0)
-                        //    {
-                        //        //Calculate discount on this
-                        //        var discountableQty = Convert.ToInt32(Math.Floor(item.Qty / promoItem.Qty));
-                        //        if (discountableQty > 0)
-                        //        {
-                        //            var price = item.Price * (discountableQty * promoItem.Qty);
-                        //            var discountValue = discountableQty * promo.DiscountValue;
-                        //            total += GetDiscountedPrice(price, promo.DiscountType, discountValue);
-                        //        }
-                        //        //Actual price on this
-                        //        var extraQty = item.Qty % promoItem.Qty;
-                        //        if (extraQty > 0)
-                        //        {
-                        //            total += item.Price * extraQty;
-                        //        }
-                        //    }
-                        //}
+                        foreach (var promoItem in promo.PromoItems)
+                        {
+                            var item = items.FirstOrDefault(x => x.ItemId == promoItem.ItemId);
+                            if (item != null && item.Qty > 0 && promoItem.Qty > 0)
+                            {
+                                //Calculate discount on this
+                                var discountableQty = Convert.ToInt32(Math.Floor(item.Qty / promoItem.Qty));
+                                if (discountableQty > 0)
+                                {
+                                    var price = item.Price * (discountableQty * promoItem.Qty);
+                                    var discountValue = discountableQty * promo.DiscountValue;
+                                    total += GetDiscountedPrice(price, promo.DiscountType, discountValue);
+                                }
+                                //Actual price on this
+                                var extraQty = item.Qty % promoItem.Qty;
+                                if (extraQty > 0)
+                                {
+                                    total += item.Price * extraQty;
+                                }
+                            }
+                        }
 
                         //foreach (var promoItem in promo.PromoItems)
                         //{
