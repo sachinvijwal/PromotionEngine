@@ -36,7 +36,7 @@ namespace PromotionEngine.Controllers
         [HttpPost]
         public IActionResult Index(List<Item> items)
         {
-            ViewBag.Total = DiscountUtil.CalculateTotal(items.Where(x => x.Qty > 0).ToList(), _promotionAction.GetPromos());
+            ViewBag.Total = DiscountUtil.CalculateTotal(items, _promotionAction.GetPromos());
 
             return View(items);
         }
