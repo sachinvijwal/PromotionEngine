@@ -39,7 +39,7 @@ namespace PromotionEngine.Utility
 
                                     if (promo.PromoItems.Count > 1)
                                     {
-                                        #region Need more correction here but fulfil exiting test case requirements 
+                                        #region Need more correction here but fulfil other test case requirements 
                                         //var discountableQty =
 
                                         //More than 1 items in promo then discount should be applicable once on those items
